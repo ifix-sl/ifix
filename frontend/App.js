@@ -24,6 +24,7 @@ const stackPages = [
 	{
 		name: "Sign Up",
 		component: SignUpScreen,
+		options: { tabBarVisible: false },
 	},
 ];
 
@@ -50,7 +51,7 @@ export default function App() {
 								key={idx}
 								name={page.name}
 								component={page.component}
-								options={{ tabBarVisible: false }}
+								options={page.options}
 							/>
 						);
 					})}
