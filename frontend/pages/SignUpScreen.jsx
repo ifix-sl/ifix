@@ -10,12 +10,12 @@ const SignUpScreen = ({ navigation }) => {
 		<SafeAreaView>
 			<TextInput onChangeText={setEmail} value={email} />
 			<TextInput onChangeText={setPassword} value={password} />
-			<TextInput
+			{/* <TextInput
 				onChangeText={onChangeNumber}
 				value={number}
 				placeholder="useless placeholder"
 				keyboardType="numeric"
-			/>
+			/> */}
 		</SafeAreaView>
 	);
 };

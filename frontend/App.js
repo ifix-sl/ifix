@@ -7,31 +7,57 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 import SignUpScreen from "./pages/SignUpScreen";
 
+import { DefaultTheme as NavigationDefaultTheme } from "@react-navigation/native";
+import {
+	MD2LightTheme,
+	adaptNavigationTheme,
+	PaperProvider,
+} from "react-native-paper";
+import merge from "deepmerge";
+import { AppRegistry } from "react-native";
+import { name as appName } from "./app.json";
+
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
 const stackPages = [
 	{
-		name: "SignUp",
+		name: "Sign Up",
 		component: SignUpScreen,
 	},
 ];
 
+const { LightTheme } = adaptNavigationTheme({
+	reactNavigationLight: NavigationDefaultTheme,
+});
+
+const CombinedDefaultTheme = merge(MD2LightTheme, LightTheme);
+
+const theme = {
+	...CombinedDefaultTheme,
+	// colors: customPallete.colors,
+};
+
 export default function App() {
 	return (
-		<NavigationContainer>
-			<StatusBar translucent backgroundColor="transparent" />
-			<Stack.Navigator initialRouteName="SignUpScreen">
-				{stackPages.map((page, idx) => {
-					return (
-						<Stack.Screen
-							key={idx}
-							name={page.name}
-							component={page.component}
-						/>
-					);
-				})}
-			</Stack.Navigator>
-		</NavigationContainer>
+		<PaperProvider theme={theme}>
+			<NavigationContainer theme={theme}>
+				<StatusBar translucent backgroundColor="transparent" />
+				<Stack.Navigator initialRouteName="SignUpScreen">
+					{stackPages.map((page, idx) => {
+						return (
+							<Stack.Screen
+								key={idx}
+								name={page.name}
+								component={page.component}
+								options={{ tabBarVisible: false }}
+							/>
+						);
+					})}
+				</Stack.Navigator>
+			</NavigationContainer>
+		</PaperProvider>
 	);
 }
+
+AppRegistry.registerComponent(appName, () => Main);
