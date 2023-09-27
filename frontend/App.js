@@ -6,6 +6,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 import SignUpScreen from "./pages/SignUpScreen";
+import OTPScreen from "./pages/OTPScreen";
 
 import { DefaultTheme as NavigationDefaultTheme } from "@react-navigation/native";
 import {
@@ -24,6 +25,11 @@ const stackPages = [
 	{
 		name: "Sign Up",
 		component: SignUpScreen,
+		options: { tabBarVisible: false },
+	},
+	{
+		name: "OTP Verification",
+		component: OTPScreen,
 		options: { tabBarVisible: false },
 	},
 ];

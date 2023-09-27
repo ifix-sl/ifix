@@ -42,7 +42,11 @@ const SignUpScreen = ({ navigation }) => {
 					placeholder="Enter your password"
 					onChangeText={(text) => setPassword(text)}
 				/>
-				<Button mode="contained" className="mt-5 py-2">
+				<Button
+					mode="contained"
+					className="mt-5 py-2"
+					onPress={() => navigation.navigate("OTP Verification")}
+				>
 					Sign Up
 				</Button>
 			</View>
