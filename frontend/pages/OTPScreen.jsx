@@ -1,69 +1,62 @@
-import { View, Text } from "react-native";
-import { useState, useRef } from "react";
-import OTPTextInput from "react-native-otp-textinput";
-import { SafeAreaView } from "react-native-safe-area-context";
-import { Button } from "react-native-paper";
-import axios from "axios";
+import { View, Text } from "react-native"
+import { useState, useRef } from "react"
+import OTPTextInput from "react-native-otp-textinput"
+import { SafeAreaView } from "react-native-safe-area-context"
+import { Button } from "react-native-paper"
+import axios from "axios"
 
-const APP_ID = "APP_008059";
-const PHONE_NO = "94714349454";
-const PASSWORD = "53588ebf948008be442cfe978ec7dbea";
+const APP_ID = "APP_008059"
+const PHONE_NO = "94714349454"
+const PASSWORD = "53588ebf948008be442cfe978ec7dbea"
 
-const sendRequest = () => {
-	const url = "https://api.mspace.lk/otp/request";
-	const payload = {
-		applicationId: APP_ID,
-		password: PASSWORD,
-		subscriberId: "tel:" + PHONE_NO,
-		applicationHash: "abcdefgh",
-		applicationMetaData: {
-			client: "MOBILEAPP",
-			device: "Samsung S10",
-			os: "android 8",
-			appCode: "https://play.google.com/store/apps/details?id=lk",
-		},
-	};
-	axios
-		.post(url, payload)
-		.then(function (response) {
-			console.log(response);
-		})
-		.catch(function (error) {
-			console.log(error);
-		});
-};
+// const sendRequest = () => {
+// 	const url = "http://54.169.229.45:3000/users"
+// 	const payload = {
+// 		contactNo: PHONE_NO,
+// 		name: "John Doe",
+// 		password: "pwd12345"
+// 	}
+// 	axios
+// 		.post(url, payload)
+// 		.then(function (response) {
+// 			console.log(response)
+// 		})
+// 		.catch(function (error) {
+// 			console.log(error)
+// 		})
+// }
 
-const verifyRequest = (OTP) => {
-	const url = "https://api.mspace.lk/otp/verify";
-	const payload = {
-		applicationId: APP_ID,
-		password: PASSWORD,
-		referenceNo: "213561321321613",
-		otp: OTP,
-	};
-	axios
-		.post(url, payload)
-		.then(function (response) {
-			console.log(response);
-		})
-		.catch(function (error) {
-			console.log(error);
-		});
-};
+// const verifyRequest = (OTP) => {
+// 	const url = "https://api.mspace.lk/otp/verify"
+// 	const payload = {
+// 		applicationId: APP_ID,
+// 		password: PASSWORD,
+// 		referenceNo: "213561321321613",
+// 		otp: OTP,
+// 	}
+// 	axios
+// 		.post(url, payload)
+// 		.then(function (response) {
+// 			console.log(response)
+// 		})
+// 		.catch(function (error) {
+// 			console.log(error)
+// 		})
+// }
 
 const OTPScreen = ({ navigation }) => {
-	let otpInput = useRef(null);
-	console.log(otpInput);
+	let otpInput = useRef(null)
+	console.log(otpInput)
 
 	const clearText = () => {
-		otpInput.current.clear();
-	};
+		otpInput.current.clear()
+	}
 
 	const setText = () => {
-		otpInput.current.setValue("1234");
-	};
+		otpInput.current.setValue("1234")
+	}
 
-	const [otp, setOTP] = useState("");
+	const [otp, setOTP] = useState("")
 
 	return (
 		<SafeAreaView>
@@ -100,7 +93,7 @@ const OTPScreen = ({ navigation }) => {
 				</Button>
 			</View>
 		</SafeAreaView>
-	);
-};
+	)
+}
 
-export default OTPScreen;
+export default OTPScreen
