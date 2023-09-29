@@ -7,7 +7,6 @@ import axios from "axios";
 import { otpVerify } from "../services/register";
 
 const APP_ID = "APP_008059";
-const PHONE_NO = "94714349454";
 const PASSWORD = "53588ebf948008be442cfe978ec7dbea";
 
 // const sendRequest = () => {
@@ -62,10 +61,7 @@ const OTPScreen = ({ navigation }) => {
 	const verifyRequest = (OTP) => {
 		const PHONE_NO = "94714349454";
 		const payload = {
-			applicationId: APP_ID,
-			password: PASSWORD,
 			contactNo: PHONE_NO,
-			referenceNo: "213561321321613",
 			otp: OTP,
 		};
 		const res = otpVerify(payload);
