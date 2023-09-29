@@ -45,7 +45,7 @@ const tabPages = [
 	{
 		name: "Home",
 		component: HomeScreen,
-		options: { headerShown: true },
+		options: { headerShown: false },
 		icon: "home-outline",
 	},
 	{

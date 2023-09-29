@@ -1,11 +1,14 @@
-import { View, Text } from "react-native";
-import React from "react";
+import { SafeAreaView } from "react-native-safe-area-context";
+
+import SearchCard from "../components/home/SearchCard";
+import ServicesCard from "../components/home/ServicesCard";
 
 const HomeScreen = () => {
 	return (
-		<View>
-			<Text>HomeScreen</Text>
-		</View>
+		<SafeAreaView>
+			<SearchCard />
+			<ServicesCard />
+		</SafeAreaView>
 	);
 };
 
