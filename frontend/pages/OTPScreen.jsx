@@ -23,7 +23,7 @@ const OTPScreen = ({ navigation }) => {
 				<Button
 					mode="contained"
 					className="mt-5 py-2"
-					onPress={() => navigation.navigate("OTP Verification")}
+					onPress={() => navigation.navigate("TabNavigator")}
 				>
 					Continue
 				</Button>
