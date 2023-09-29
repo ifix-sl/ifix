@@ -1,6 +1,6 @@
 import { View, Text } from "react-native";
 import { useState } from "react";
-import { SafeAreaView, StyleSheet } from "react-native";
+import { SafeAreaView, StyleSheet, Image } from "react-native";
 import { Button, TextInput } from "react-native-paper";
 import { registerUser } from "../services/register";
 
@@ -29,8 +29,8 @@ const SignUpScreen = ({ navigation }) => {
 
 	return (
 		<SafeAreaView>
-			<View className="mt-12 mb-0">
-				<Text className="text-center text-5xl m-0">iFix</Text>
+			<View className="mt-12 mb-0 flex justify-center align-middle items-center">
+				<Image className="" source={require("../assets/img/logo.png")} />
 			</View>
 			<View className="p-5 pt-8 mt-3">
 				<TextInput
