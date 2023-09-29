@@ -1,13 +1,14 @@
-import { View, Text } from "react-native"
-import { useState, useRef } from "react"
-import OTPTextInput from "react-native-otp-textinput"
-import { SafeAreaView } from "react-native-safe-area-context"
-import { Button } from "react-native-paper"
-import axios from "axios"
+import { View, Text } from "react-native";
+import { useState, useRef } from "react";
+import OTPTextInput from "react-native-otp-textinput";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { Button } from "react-native-paper";
+import axios from "axios";
+import { otpVerify } from "../services/register";
 
-const APP_ID = "APP_008059"
-const PHONE_NO = "94714349454"
-const PASSWORD = "53588ebf948008be442cfe978ec7dbea"
+const APP_ID = "APP_008059";
+const PHONE_NO = "94714349454";
+const PASSWORD = "53588ebf948008be442cfe978ec7dbea";
 
 // const sendRequest = () => {
 // 	const url = "http://54.169.229.45:3000/users"
@@ -45,18 +46,38 @@ const PASSWORD = "53588ebf948008be442cfe978ec7dbea"
 // }
 
 const OTPScreen = ({ navigation }) => {
-	let otpInput = useRef(null)
-	console.log(otpInput)
+	let otpInput = useRef(null);
+	console.log(otpInput);
 
 	const clearText = () => {
-		otpInput.current.clear()
-	}
+		otpInput.current.clear();
+	};
 
 	const setText = () => {
-		otpInput.current.setValue("1234")
-	}
+		otpInput.current.setValue("1234");
+	};
 
-	const [otp, setOTP] = useState("")
+	const [otp, setOTP] = useState("");
+
+	const verifyRequest = (OTP) => {
+		const PHONE_NO = "94714349454";
+		const payload = {
+			applicationId: APP_ID,
+			password: PASSWORD,
+			contactNo: PHONE_NO,
+			referenceNo: "213561321321613",
+			otp: OTP,
+		};
+		const res = otpVerify(payload);
+		res
+			.then((response) => {
+				console.log(response);
+				navigation.navigate("TabNavigator");
+			})
+			.catch((error) => {
+				console.log(error);
+			});
+	};
 
 	return (
 		<SafeAreaView>
@@ -74,9 +95,9 @@ const OTPScreen = ({ navigation }) => {
 					handleTextChange={(text) => setOTP(text)}
 					keyboardType="numeric"
 				/>
-				<Button mode="contained" className="mt-5 py-2" onPress={sendRequest}>
+				{/* <Button mode="contained" className="mt-5 py-2" onPress={sendRequest}>
 					Request OTP
-				</Button>
+				</Button> */}
 				<Button
 					mode="contained"
 					className="mt-5 py-2"
@@ -93,7 +114,7 @@ const OTPScreen = ({ navigation }) => {
 				</Button>
 			</View>
 		</SafeAreaView>
-	)
-}
+	);
+};
 
-export default OTPScreen
+export default OTPScreen;

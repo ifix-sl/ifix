@@ -2,11 +2,30 @@ import { View, Text } from "react-native";
 import { useState } from "react";
 import { SafeAreaView, StyleSheet } from "react-native";
 import { Button, TextInput } from "react-native-paper";
+import { registerUser } from "../services/register";
 
 const SignUpScreen = ({ navigation }) => {
 	const [email, setEmail] = useState("");
 	const [phone, setPhone] = useState("");
 	const [password, setPassword] = useState("");
+
+	const register = () => {
+		const PHONE_NO = "94714349454";
+		const payload = {
+			contactNo: PHONE_NO,
+			name: "John Doe",
+			password: "pwd12345",
+		};
+		const res = registerUser(payload);
+		res
+			.then((response) => {
+				console.log(response);
+				navigation.navigate("OTP Verification");
+			})
+			.catch((error) => {
+				console.log(error);
+			});
+	};
 
 	return (
 		<SafeAreaView>
@@ -42,12 +61,15 @@ const SignUpScreen = ({ navigation }) => {
 					placeholder="Enter your password"
 					onChangeText={(text) => setPassword(text)}
 				/>
+				<Button mode="contained" className="mt-5 py-2" onPress={register}>
+					Sign Up
+				</Button>
 				<Button
 					mode="contained"
-					className="mt-5 py-2"
+					className="mt-3 py-2"
 					onPress={() => navigation.navigate("OTP Verification")}
 				>
-					Sign Up
+					Go to OTP Screen
 				</Button>
 			</View>
 		</SafeAreaView>
