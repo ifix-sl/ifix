@@ -98,6 +98,7 @@ const OTPScreen = ({ navigation }) => {
 					mode="contained"
 					className="mt-5 py-2"
 					onPress={() => verifyRequest(otp)}
+					labelStyle={{ color: "#fff" }}
 				>
 					Verify OTP
 				</Button>
@@ -105,6 +106,7 @@ const OTPScreen = ({ navigation }) => {
 					mode="contained"
 					className="mt-5 py-2"
 					onPress={() => navigation.navigate("TabNavigator")}
+					labelStyle={{ color: "#fff" }}
 				>
 					Go to Home Screen
 				</Button>
