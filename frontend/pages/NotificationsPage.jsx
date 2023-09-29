@@ -3,8 +3,12 @@ import React from "react";
 
 const NotificationsPage = () => {
 	return (
-		<View>
-			<Text>NotificationsPage</Text>
+		<View className="w-screen min-h-screen">
+			<View className="flex flex-col items-center text-center">
+				<View className="flex items-center mt-40">
+					<Text className="text-xl font-bold">No new notifications</Text>
+				</View>
+			</View>
 		</View>
 	);
 };
