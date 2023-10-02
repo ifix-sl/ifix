@@ -1,4 +1,6 @@
-# iFix (Sri Lanka)
+# iFix
+
+![iFix Banner](img/banner.png)
 
 ## Background
 
@@ -10,4 +12,4 @@ In today's fast-paced world, finding skilled professionals for essential househo
 
 ## Screenshots
 
-![Screenshots](img/screenshots.png)
+![iFix Screenshots](img/screenshots.png)
