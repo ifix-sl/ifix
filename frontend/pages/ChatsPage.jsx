@@ -3,35 +3,34 @@ import { GiftedChat, InputToolbar } from "react-native-gifted-chat";
 import { OPENAI_KEY } from "@env";
 import axios from "axios";
 import { StyleSheet } from "react-native";
+import { Configuration, OpenAIApi } from "openai";
 
 const ChatsPage = () => {
 	const [messages, setMessages] = useState([]);
 
-	const sendMessage = async (message) => {
-		console.log("ssdsdsd", OPENAI_KEY);
-		try {
-			const response = await axios.post(
-				"https://api.openai.com/v1/chat/completions",
-				{
-					messages: [
-						{
-							role: "user",
-							content: message,
-						},
-					],
-					model: "gpt-3.5-turbo",
-				},
-				{
-					headers: {
-						Authorization: `Bearer ${OPENAI_KEY}`,
-						"Content-Type": "application/json",
-					},
-				}
-			);
+	function generatePrompt(prompt) {
+		return `You are a AI assistant in a on demand home services app. 
+		The app provides services like plumbing, gardening, appliance repair etc. 
+		You are chatting with the customer and he says the following prompt.
+		Prompt: ${prompt}`;
+	}
 
-			return response.data.choices[0].message.content;
-		} catch (err) {
-			console.log(err, "api call error");
+	const sendMessage = async (message) => {
+		const configuration = new Configuration({
+			apiKey: OPENAI_KEY,
+		});
+		const openai = new OpenAIApi(configuration);
+
+		try {
+			const completion = await openai.createCompletion({
+				model: "text-davinci-003",
+				prompt: generatePrompt(message),
+				temperature: 0.6,
+			});
+
+			return completion.data.choices[0].text;
+		} catch (error) {
+			console.log(error);
 		}
 	};
 
@@ -46,7 +45,7 @@ const ChatsPage = () => {
 				createdAt: new Date(),
 				user: {
 					_id: 2,
-					name: "GPT-3.5-turbo",
+					name: "iFix",
 					// avatar: require("../assets/chatgptlogo.png"),
 				},
 			},
@@ -57,7 +56,7 @@ const ChatsPage = () => {
 
 	const user = {
 		_id: 1,
-		name: "Developer",
+		name: "John Doe",
 		// avatar: require("../assets/profile.jpeg"),
 	};
 
